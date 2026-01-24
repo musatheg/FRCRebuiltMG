@@ -1,13 +1,39 @@
 {
-
-"default" : { 
-   "motorConfigs" : {
+"example" : {
+    "motorConfigs" : {
        "frontRightSteer" : {"cType":"SparkMax", "mType":"kBrushless","canid":8},
        "frontRightDrive" : {"cType":"SparkFlex","mType":"kBrushless","canid":9}
    },
    "value1" : "string",
    "value2" : 42,
    "value3" : { "nestedvalue" : "value3name", "nestedint" : 19 }
+},
+
+"default" : { 
+   "motorConfigs" : {
+       "frontRightTurning" : {"cType":"SparkMax", "mType":"kBrushless", "canid":3},
+       "frontRightDrive" :   {"cType":"SparkMax", "mType":"kBrushless", "canid":2},
+       "frontLeftTurning" :  {"cType":"SparkMax", "mType":"kBrushless", "canid":5},
+       "frontLeftDrive" :    {"cType":"SparkMax", "mType":"kBrushless", "canid":4},
+       "backRightTurning" :  {"cType":"SparkMax", "mType":"kBrushless", "canid":9},
+       "backRightDrive" :    {"cType":"SparkMax", "mType":"kBrushless", "canid":8},
+       "backLeftTurning" :   {"cType":"SparkMax", "mType":"kBrushless", "canid":7},
+       "backLeftDrive" :     {"cType":"SparkMax", "mType":"kBrushless", "canid":6}
+   },
+   "Drive" : [
+       {"varName" : "frontRightChassisAngularOffset", "value" : 0.0 },
+       {"varName" : "frontLeftChassisAngularOffset", "value" : -1.570796 },
+       {"varName" : "backRightChassisAngularOffset", "value" : 1.570796 },
+       {"varName" : "backLeftChassisAngularOffset", "value" : 3.141593 }
+   ],
+   "Intake" : [
+       {"varName" : "intakeEnabled", "value" : false},
+       {"varName" : "intakeRollerCanId", "value" : 16}
+   ],
+
+   "visionConfig" : [
+        {"name":"Arducam_OV9782_C","positionT":{"x":0.0,"y":0.0,"z":0.0},"positionR":{"quaternion":{"W":1.0,"X":0.0,"Y":0.0,"Z":0.0}},"primaryStrat":"LOWEST_AMBIGUITY","backupStrat":"CLOSEST_TO_CAMERA_HEIGHT"}
+  ]
 },
 
 
@@ -27,6 +53,14 @@
        {"varName" : "frontLeftChassisAngularOffset", "value" : -1.570796 },
        {"varName" : "backRightChassisAngularOffset", "value" : 1.570796 },
        {"varName" : "backLeftChassisAngularOffset", "value" : 3.141593 }
+   ],
+   "Intake" : [
+       {"varName" : "intakeEnabled", "value" : false},
+
+       {"varName" : "intakeRollerCanId", "value" : 16},
+       {"varName" : "intakeRollerStallLimit", "value" : 25},
+       {"varName" : "intakeRollerFreeLimit", "value" : 60}
+
    ],
 
    "visionConfig" : [

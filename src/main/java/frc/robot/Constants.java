@@ -89,6 +89,9 @@ public final class Constants {
         public static final double kBaseRadius = Units.inchesToMeters(RobotMap.R_BASE_RADIUS_INCHES);
         public static final boolean kGyroReversed = false;
     }
+    public static final class IntakeConstants{
+        public static final int kIntakeID = -1;
+    }
 
     public static final class AutoConstants {
         public static final double kMaxSpeedMetersPerSecond = 4.92;
