@@ -6,6 +6,8 @@ package frc.robot.commands.drive;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.geometry.Rotation2d;
+import frc.robot.OI;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.Drive;
 import frc.robot.testingdashboard.Command;
@@ -47,6 +49,21 @@ public class SwerveDrive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    double rotationPower = 0.0;
+    if (OI.getInstance().getDriverController().getRightBumperButton()) {
+      rotationPower = getRotationFromTransalation();
+    }
+    else {
+      rotationPower = getRotationFromOperator();
+    }
+    m_drive.drive(
+      -MathUtil.applyDeadband(m_DriveInputs.getX(), OIConstants.kDriveDeadband),
+      -MathUtil.applyDeadband(m_DriveInputs.getY(), OIConstants.kDriveDeadband),
+      rotationPower,
+      true, false);
+  }
+
+  private double getRotationFromOperator() {
     var rotationPower = -MathUtil.applyDeadband(m_DriveInputs.getRotation(), OIConstants.kDriveDeadband);
     if (rotationPower == 0) {
       if (m_operatorRotating &&
@@ -61,11 +78,15 @@ public class SwerveDrive extends Command {
     else {
       m_operatorRotating = true;
     }
-    m_drive.drive(
-      -MathUtil.applyDeadband(m_DriveInputs.getX(), OIConstants.kDriveDeadband),
-      -MathUtil.applyDeadband(m_DriveInputs.getY(), OIConstants.kDriveDeadband),
-      rotationPower,
-      true, false);
+    return rotationPower;
+  }
+
+  private double getRotationFromTransalation() {
+    double x = -MathUtil.applyDeadband(m_DriveInputs.getX(), OIConstants.kDriveDeadband);
+    double y = -MathUtil.applyDeadband(m_DriveInputs.getY(), OIConstants.kDriveDeadband);
+    Rotation2d heading = new Rotation2d(x, y);
+    double currentHeading = m_drive.getHeading();
+    return m_headingController.calculate(currentHeading, heading.getDegrees());
   }
 
   // Called once the command ends or is interrupted.
