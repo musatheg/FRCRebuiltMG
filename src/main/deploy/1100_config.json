@@ -56,9 +56,17 @@
     ],
    "Intake" : [
        {"varName" : "intakeEnabled", "value" : false},
-       {"varName" : "intakeRollerCanId", "value" : 16},
-       {"varName" : "intakeRollerStallLimit", "value" : 25},
-       {"varName" : "intakeRollerFreeLimit", "value" : 60}
+       {"varName" : "rollerCanId", "value" : 16},
+       {"varName" : "rollerStallLimit", "value" : 25},
+       {"varName" : "rollerFreeLimit", "value" : 60},
+       {"varName" : "deployCanId", "value" : 0},
+       {"varName" : "deployPositionFactor", "value" : 1},
+       {"varName" : "deployP", "value" : 0},
+       {"varName" : "deployI", "value" : 0},
+       {"varName" : "deployD", "value" : 0},
+       {"varName" : "tuneDeployPID", "value" : false},
+       {"varName" : "deployPosition", "value" : 0},
+       {"varName" : "retractPosition", "value" : 0}
    ],
 
    "Shooter" : [
